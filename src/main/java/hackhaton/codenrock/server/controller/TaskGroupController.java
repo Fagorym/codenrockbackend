@@ -11,7 +11,7 @@ import org.springframework.web.bind.annotation.RestController;
 
 import java.util.List;
 
-@RequestMapping(value = "api/v2/tasks")
+@RequestMapping(value = "api/v2/group")
 @RequiredArgsConstructor
 @RestController
 public class TaskGroupController {
@@ -27,7 +27,7 @@ public class TaskGroupController {
         return taskGroupService.getTaskGroups(false);
     }
 
-    @GetMapping(value = "/group")
+    @GetMapping(value = "/tasks")
     public List<TaskDto> getTasksByGroup(@RequestParam Long groupId) {
         return taskGroupService.getTasksByGroup(groupId);
 

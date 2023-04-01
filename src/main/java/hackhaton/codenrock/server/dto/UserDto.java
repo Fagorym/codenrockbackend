@@ -9,5 +9,6 @@ public class UserDto {
     private Integer dailyScore;
     private Integer currentScore;
     private Integer experience;
+    private Integer experienceMax;
     private Integer level;
 }
