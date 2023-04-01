@@ -1,0 +1,23 @@
+version: '3.1'
+services:
+  app:
+    container_name: rsa
+    image: fagorym/rsa:develop
+    build: ./
+    ports:
+      - "80:8080"
+    depends_on:
+      - postgresqldb
+    environment:
+      - SPRING_DATASOURCE_PASSWORD=postgres
+      - SPRING_DATASOURCE_USERNAME=postgres
+      - SPRING_DATASOURCE_URL=jdbc:postgresql://host.docker.internal:5432/rsabd
+  postgresqldb:
+    image: postgres:latest
+    restart: always
+    ports:
+      - "5432:5432"
+    environment:
+      - POSTGRES_DB=rsabd
+      - POSTGRES_USER=postgres
+      - POSTGRES_PASSWORD=postgres
