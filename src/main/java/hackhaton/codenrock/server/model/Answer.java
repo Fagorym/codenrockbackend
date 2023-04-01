@@ -13,4 +13,5 @@ public class Answer {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
     private String text;
+    private Boolean isRight;
 }

@@ -18,7 +18,4 @@ public class Question {
     private Set<Answer> answers;
 
      */
-    @OneToOne
-    private Answer rightAnswer;
-
 }
