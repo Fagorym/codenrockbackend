@@ -3,8 +3,6 @@ package hackhaton.codenrock.server.model;
 import jakarta.persistence.*;
 import lombok.Data;
 
-import java.util.Set;
-
 @Entity
 @Data
 public class Task {
@@ -15,12 +13,8 @@ public class Task {
     private String name;
     private Integer type;
     private Integer number;
+    private Integer earnedExperience;
     @ManyToOne(fetch = FetchType.LAZY)
     private TaskGroup group;
-    /*
-    @OneToMany(mappedBy = "task", fetch = FetchType.LAZY)
-    private Set<Question> jobs;
-
-     */
 
 }

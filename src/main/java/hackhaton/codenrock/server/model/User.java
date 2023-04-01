@@ -14,6 +14,7 @@ public class User {
     private Long id;
     private String name;
     private Integer level;
+    private Integer experienceMax;
     private Integer experience;
     private Integer dailyScore;
     private Integer currentScore;

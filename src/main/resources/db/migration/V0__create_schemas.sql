@@ -21,12 +21,13 @@ create table task_group
 
 create table task
 (
-    id          bigserial primary key,
-    number      int4,
-    name        varchar,
-    description varchar,
-    type        int4,
-    group_id    bigserial references task_group (id)
+    id                bigserial primary key,
+    number            int4,
+    earned_experience int4,
+    name              varchar,
+    description       varchar,
+    type              int4,
+    group_id          bigserial references task_group (id)
 );
 
 create table question

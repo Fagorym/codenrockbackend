@@ -7,5 +7,6 @@ import java.util.List;
 @Data
 public class QuestionAnswersListDto {
     private List<QuestionAnswersDto> questionAnswersDtoList;
+    private Long taskId;
 
 }
