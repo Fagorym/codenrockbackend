@@ -6,6 +6,7 @@ import hackhaton.codenrock.server.dto.QuestionAnswersListDto;
 import hackhaton.codenrock.server.dto.QuestionDto;
 import hackhaton.codenrock.server.exception.UserNotFoundException;
 import hackhaton.codenrock.server.model.Answer;
+import hackhaton.codenrock.server.model.Task;
 import hackhaton.codenrock.server.model.User;
 import hackhaton.codenrock.server.repository.AnswerRepository;
 import hackhaton.codenrock.server.repository.QuestionRepository;
@@ -17,6 +18,7 @@ import org.springframework.stereotype.Service;
 
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Set;
 
 @Service
 @RequiredArgsConstructor
@@ -57,10 +59,9 @@ public class QuestionServiceImpl implements QuestionService {
             User user = userRepository.findById(1L).orElseThrow(
                     () -> new UserNotFoundException(1L)
             );
-            Integer newExperience = user.getExperience() +
-                    tasksRepository.findById(questionAnswers.getTaskId())
-                            .orElseThrow(() -> new UserNotFoundException(1L))
-                            .getEarnedExperience();
+            Task completed = tasksRepository.findById(questionAnswers.getTaskId())
+                    .orElseThrow(() -> new UserNotFoundException(1L));
+            Integer newExperience = user.getExperience() + completed.getEarnedExperience();
             int level = user.getLevel();
             while (newExperience > user.getExperienceMax()) {
                 newExperience %= user.getExperienceMax();
@@ -69,6 +70,9 @@ public class QuestionServiceImpl implements QuestionService {
             }
             user.setLevel(level);
             user.setExperience(newExperience);
+            Set<Task> tasks = user.getCompletedTasks();
+            tasks.add(completed);
+            user.setCompletedTasks(tasks);
             userRepository.save(user);
             return true;
         } else {
