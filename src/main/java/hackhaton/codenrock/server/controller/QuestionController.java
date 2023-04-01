@@ -1,12 +1,10 @@
 package hackhaton.codenrock.server.controller;
 
+import hackhaton.codenrock.server.dto.QuestionAnswersListDto;
 import hackhaton.codenrock.server.dto.QuestionDto;
 import hackhaton.codenrock.server.service.QuestionService;
 import lombok.RequiredArgsConstructor;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RequestParam;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
 
@@ -19,5 +17,10 @@ public class QuestionController {
     @GetMapping
     public List<QuestionDto> getByTask(@RequestParam Long taskId) {
         return questionService.getByTaskId(taskId);
+    }
+
+    @PostMapping
+    public boolean checkAnswersForTasks(@RequestBody QuestionAnswersListDto questionAnswers) {
+        return questionService.checkAnswers(questionAnswers);
     }
 }

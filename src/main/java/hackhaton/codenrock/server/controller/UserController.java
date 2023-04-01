@@ -17,7 +17,7 @@ public class UserController {
     private final UserService userService;
 
     @GetMapping
-    public UserDto get(@RequestParam Long id) {
-        return userService.getUserById(id);
+    public UserDto get(@RequestParam Long userId) {
+        return userService.getUserById(userId);
     }
 }

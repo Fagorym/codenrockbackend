@@ -1,7 +1,11 @@
 package hackhaton.codenrock.server.service;
 
 import hackhaton.codenrock.server.dto.AnswerDto;
+import hackhaton.codenrock.server.dto.QuestionAnswersDto;
+import hackhaton.codenrock.server.dto.QuestionAnswersListDto;
 import hackhaton.codenrock.server.dto.QuestionDto;
+import hackhaton.codenrock.server.model.Answer;
+import hackhaton.codenrock.server.repository.AnswerRepository;
 import hackhaton.codenrock.server.repository.QuestionRepository;
 import lombok.RequiredArgsConstructor;
 import org.modelmapper.ModelMapper;
@@ -14,6 +18,8 @@ import java.util.List;
 @RequiredArgsConstructor
 public class QuestionServiceImpl implements QuestionService {
     private final QuestionRepository questionRepository;
+
+    private final AnswerRepository answerRepository;
     private final ModelMapper modelMapper;
 
     public List<QuestionDto> getByTaskId(Long taskId) {
@@ -29,5 +35,18 @@ public class QuestionServiceImpl implements QuestionService {
                 })
                 .toList();
 
+    }
+
+    @Override
+    public boolean checkAnswers(QuestionAnswersListDto questionAnswers) {
+        int rightCount = 0;
+        for (QuestionAnswersDto dto : questionAnswers.getQuestionAnswersDtoList()) {
+            Answer answer = answerRepository.findById(dto.getAnswerId())
+                    .orElseThrow(IllegalArgumentException::new);
+            if (answer.getIsRight()) {
+                rightCount++;
+            }
+        }
+        return rightCount == questionAnswers.getQuestionAnswersDtoList().size();
     }
 }
