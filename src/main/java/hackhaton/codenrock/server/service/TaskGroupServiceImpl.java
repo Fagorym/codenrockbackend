@@ -16,9 +16,10 @@ public class TaskGroupServiceImpl implements TaskGroupService {
     private final ModelMapper modelMapper;
 
     @Override
-    public List<TaskGroupDto> getTaskGroups() {
+    public List<TaskGroupDto> getTaskGroups(boolean isNecessary) {
         return taskGroupRepository.findAll()
                 .stream()
+                .filter((x) -> x.getIsNecessary() == isNecessary)
                 .map((x) -> modelMapper.map(x, TaskGroupDto.class))
                 .toList();
     }

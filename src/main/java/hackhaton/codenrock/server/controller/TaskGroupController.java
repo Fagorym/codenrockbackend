@@ -16,7 +16,12 @@ public class TaskGroupController {
     private final TaskGroupService taskGroupService;
 
     @GetMapping
-    public List<TaskGroupDto> get() {
-        return taskGroupService.getTaskGroups();
+    public List<TaskGroupDto> getNecessary() {
+        return taskGroupService.getTaskGroups(true);
+    }
+
+    @GetMapping(value = "additional")
+    public List<TaskGroupDto> getAdditional(){
+        return taskGroupService.getTaskGroups(false);
     }
 }

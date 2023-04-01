@@ -17,3 +17,13 @@ create table task_group
     count       int4
 
 );
+
+create table task
+(
+    id          bigserial primary key,
+    name        varchar,
+    description varchar,
+    type        int4,
+    is_necessary bool,
+    group_id    bigserial references task_group (id)
+)

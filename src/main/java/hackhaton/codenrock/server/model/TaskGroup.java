@@ -15,6 +15,7 @@ public class TaskGroup {
     private String description;
     private String image;
     private Integer count;
+    private Boolean isNecessary;
     @OneToMany(mappedBy = "group", fetch = FetchType.LAZY)
     private Set<Task> tasks;
 }
