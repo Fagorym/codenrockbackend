@@ -4,7 +4,7 @@ package hackhaton.codenrock.server.model;
 import jakarta.persistence.*;
 import lombok.Data;
 
-import java.util.Set;
+import java.util.List;
 
 
 @Data
@@ -16,7 +16,7 @@ public class Question {
     private String text;
     @ManyToOne
     private Task task;
-    @OneToMany(mappedBy = "question")
-    private Set<Answer> answers;
+    @OneToMany(mappedBy = "question", fetch = FetchType.EAGER)
+    private List<Answer> answers;
 
 }
