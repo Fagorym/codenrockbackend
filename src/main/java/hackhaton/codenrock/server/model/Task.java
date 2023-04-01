@@ -14,9 +14,13 @@ public class Task {
     private String description;
     private String name;
     private Integer type;
+    private Integer number;
     @ManyToOne(fetch = FetchType.LAZY)
     private TaskGroup group;
+    /*
     @OneToMany(mappedBy = "task", fetch = FetchType.LAZY)
     private Set<Question> jobs;
+
+     */
 
 }

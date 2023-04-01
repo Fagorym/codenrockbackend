@@ -14,16 +14,17 @@ create table task_group
     name        varchar,
     description varchar,
     image       varchar,
+    is_necessary bool,
     count       int4
 
 );
 
 create table task
 (
-    id          bigserial primary key,
-    name        varchar,
-    description varchar,
-    type        int4,
-    is_necessary bool,
-    group_id    bigserial references task_group (id)
+    id           bigserial primary key,
+    number       int4,
+    name         varchar,
+    description  varchar,
+    type         int4,
+    group_id     bigserial references task_group (id)
 )

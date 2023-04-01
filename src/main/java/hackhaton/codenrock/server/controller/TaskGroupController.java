@@ -1,10 +1,13 @@
 package hackhaton.codenrock.server.controller;
 
+import hackhaton.codenrock.server.dto.TaskDto;
 import hackhaton.codenrock.server.dto.TaskGroupDto;
+import hackhaton.codenrock.server.model.Task;
 import hackhaton.codenrock.server.service.TaskGroupService;
 import lombok.RequiredArgsConstructor;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
 
 import java.util.List;
@@ -21,7 +24,13 @@ public class TaskGroupController {
     }
 
     @GetMapping(value = "additional")
-    public List<TaskGroupDto> getAdditional(){
+    public List<TaskGroupDto> getAdditional() {
         return taskGroupService.getTaskGroups(false);
+    }
+
+    @GetMapping(value = "/group")
+    public List<TaskDto> getTasksByGroup(@RequestParam Long groupId) {
+        return taskGroupService.getTasksByGroup(groupId);
+
     }
 }
