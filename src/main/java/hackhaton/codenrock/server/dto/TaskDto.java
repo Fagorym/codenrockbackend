@@ -8,4 +8,5 @@ public class TaskDto {
     private Integer number;
     private String name;
     private Integer type;
+    private Boolean completed;
 }

@@ -43,9 +43,14 @@ public class TaskGroupServiceImpl implements TaskGroupService {
 
     @Override
     public List<TaskDto> getTasksByGroup(Long groupId) {
+        User user = userRepository.findAll().get(0);
         return tasksRepository.getTasks(groupId)
                 .stream()
-                .map((x) -> modelMapper.map(x, TaskDto.class))
+                .map((x) -> {
+                    TaskDto dto = modelMapper.map(x, TaskDto.class);
+                    dto.setCompleted(user.getCompletedTasks().contains(x));
+                    return dto;
+                })
                 .toList();
     }
 }
