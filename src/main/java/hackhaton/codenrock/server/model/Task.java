@@ -14,7 +14,7 @@ public class Task {
     private String description;
     private String name;
     private Integer taskType;
-    @OneToMany(mappedBy = "task")
+    @OneToMany(mappedBy = "id")
     private Set<Question> jobs;
 
 }

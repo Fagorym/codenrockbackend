@@ -15,6 +15,6 @@ public class TaskGroup {
     private String description;
     private String image;
     private Integer count;
-    @OneToMany(mappedBy = "task_group")
+    @OneToMany(mappedBy = "id")
     private Set<Task> tasks;
 }

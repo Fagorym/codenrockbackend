@@ -13,7 +13,7 @@ public class Question {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
     private String text;
-    @OneToMany(mappedBy = "question")
+    @OneToMany(mappedBy = "id")
     private Set<Answer> answers;
     @OneToOne
     private Answer rightAnswer;
