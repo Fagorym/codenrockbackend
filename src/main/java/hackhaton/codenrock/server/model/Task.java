@@ -14,6 +14,8 @@ public class Task {
     private String description;
     private String name;
     private Integer taskType;
+    @ManyToOne
+    private TaskGroup group;
     @OneToMany(mappedBy = "id")
     private Set<Question> jobs;
 
