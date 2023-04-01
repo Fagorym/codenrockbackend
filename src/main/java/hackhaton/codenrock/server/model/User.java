@@ -1,10 +1,9 @@
 package hackhaton.codenrock.server.model;
 
-import jakarta.persistence.Entity;
-import jakarta.persistence.GeneratedValue;
-import jakarta.persistence.GenerationType;
-import jakarta.persistence.Id;
+import jakarta.persistence.*;
 import lombok.Data;
+
+import java.util.List;
 
 @Entity
 @Data
@@ -17,4 +16,11 @@ public class User {
     private Integer experience;
     private Integer dailyScore;
     private Integer currentScore;
+    @ManyToMany
+    @JoinTable(
+            name = "completed_tasks",
+            joinColumns = @JoinColumn(name = "user_id"),
+            inverseJoinColumns = @JoinColumn(name = "tasks_id"))
+
+    private List<Task> completedTasks;
 }

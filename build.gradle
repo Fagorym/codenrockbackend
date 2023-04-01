@@ -38,5 +38,5 @@ tasks.named('test') {
 
 
 springBoot {
-	mainClass = "ru.nsu.fit.pak.budle.ServerApplication"
+	mainClass = "hackhaton.codenrock.server.ServerApplication"
 }
