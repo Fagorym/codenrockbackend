@@ -4,8 +4,10 @@ import lombok.Data;
 
 @Data
 public class TaskGroupDto {
+    private Long id;
     private String name;
     private String description;
-    private Integer count;
+    private Long count;
+    private Long actualCount;
     private String image;
 }
