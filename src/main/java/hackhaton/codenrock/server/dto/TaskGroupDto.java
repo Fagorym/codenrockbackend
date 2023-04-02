@@ -10,4 +10,5 @@ public class TaskGroupDto {
     private Long count;
     private Long actualCount;
     private String image;
+    private Long knowledgeId;
 }

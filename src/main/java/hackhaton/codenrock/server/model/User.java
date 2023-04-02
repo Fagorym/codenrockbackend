@@ -18,6 +18,7 @@ public class User {
     private Integer experience;
     private Integer dailyScore;
     private Integer currentScore;
+    private Integer daysInRow;
     @ManyToMany
     @JoinTable(
             name = "completed_tasks",

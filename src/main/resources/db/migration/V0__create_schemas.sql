@@ -6,17 +6,28 @@ create table users
     experience     int4,
     experience_max int4,
     daily_score    int4,
-    current_score  int4
+    current_score  int4,
+    days_in_row    int4
 );
+
+create table knowledge_base
+(
+    id       bigserial primary key,
+    content  varchar,
+    was_read bool
+);
+
 
 create table task_group
 (
-    id           bigserial primary key,
-    name         varchar,
-    description  varchar,
-    image        varchar,
-    is_necessary bool,
-    count        int4
+    id                bigserial primary key,
+    name              varchar,
+    description       varchar,
+    image             varchar,
+    is_necessary      bool,
+    count             int4,
+    knowledge_base_id bigserial references knowledge_base (id)
+
 
 );
 

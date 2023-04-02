@@ -18,4 +18,6 @@ public class TaskGroup {
     private Boolean isNecessary;
     @OneToMany(mappedBy = "group", fetch = FetchType.LAZY)
     private Set<Task> tasks;
+    @OneToOne
+    private KnowledgeBase knowledgeBase;
 }

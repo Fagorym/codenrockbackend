@@ -33,7 +33,11 @@ public class TaskGroupServiceImpl implements TaskGroupService {
         return taskGroupRepository.findAll()
                 .stream()
                 .filter((x) -> x.getIsNecessary() == isNecessary)
-                .map((x) -> modelMapper.map(x, TaskGroupDto.class))
+                .map((x) -> {
+                    TaskGroupDto dto = modelMapper.map(x, TaskGroupDto.class);
+                    dto.setKnowledgeId(x.getKnowledgeBase().getId());
+                    return dto;
+                })
                 .peek((x) -> x.setActualCount(
                         completedTasks.stream()
                                 .filter(y -> Objects.equals(x.getId(), y.getGroup().getId()))
