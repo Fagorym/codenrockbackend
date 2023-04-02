@@ -23,6 +23,14 @@ public class User {
             name = "completed_tasks",
             joinColumns = @JoinColumn(name = "user_id"),
             inverseJoinColumns = @JoinColumn(name = "tasks_id"))
-
     private Set<Task> completedTasks;
+    @ManyToMany
+    @JoinTable(
+            name = "user_achievement",
+            joinColumns = @JoinColumn(name = "user_id"),
+            inverseJoinColumns = @JoinColumn(name = "achievement_id")
+    )
+    private Set<Achievement> achievements;
+
+
 }
