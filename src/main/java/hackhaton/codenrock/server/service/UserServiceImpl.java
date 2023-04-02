@@ -5,6 +5,7 @@ import hackhaton.codenrock.server.dto.UserDto;
 import hackhaton.codenrock.server.exception.UserNotFoundException;
 import hackhaton.codenrock.server.model.User;
 import hackhaton.codenrock.server.repository.UserRepository;
+import hackhaton.codenrock.server.utils.ImageWorker;
 import lombok.RequiredArgsConstructor;
 import org.modelmapper.ModelMapper;
 import org.springframework.stereotype.Service;
@@ -40,6 +41,7 @@ public class UserServiceImpl implements UserService {
 
     @Override
     public Set<AchievementDto> getAchievementByUserId(Long userId) {
+        ImageWorker imageWorker = new ImageWorker();
         User user = userRepository.findById(userId)
                 .orElseThrow(() -> new UserNotFoundException(userId));
         return user
@@ -48,12 +50,14 @@ public class UserServiceImpl implements UserService {
                 .map(achievement -> {
                     AchievementDto dto = modelMapper.map(achievement, AchievementDto.class);
                     dto.setUserScore(user.getCompletedTasks().size());
+                    dto.setImage(imageWorker.getImageFromResource(achievement.getImage()));
                     return dto;
                 })
                 .collect(Collectors.toSet());
     }
 
     public Set<AchievementDto> getNewAchievements(Long userId) {
+        ImageWorker imager = new ImageWorker();
         User user = userRepository.findById(userId)
                 .orElseThrow(() -> new UserNotFoundException(userId));
         Set<AchievementDto> newAchievements = user
@@ -63,6 +67,7 @@ public class UserServiceImpl implements UserService {
                     user.getAchievements().remove(achievement);
                     AchievementDto dto = modelMapper.map(achievement, AchievementDto.class);
                     dto.setUserScore(user.getCompletedTasks().size());
+                    dto.setImage(imager.getImageFromResource(achievement.getImage()));
                     return dto;
                 })
                 .collect(Collectors.toSet());

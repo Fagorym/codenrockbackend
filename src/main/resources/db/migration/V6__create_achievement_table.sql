@@ -3,7 +3,8 @@ create table achievement
     id          bigserial primary key,
     name        varchar,
     description varchar,
-    max_score   int4
+    max_score   int4,
+    image       varchar
 );
 
 create table user_achievement

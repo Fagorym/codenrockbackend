@@ -7,6 +7,7 @@ import hackhaton.codenrock.server.model.User;
 import hackhaton.codenrock.server.repository.TaskGroupRepository;
 import hackhaton.codenrock.server.repository.TasksRepository;
 import hackhaton.codenrock.server.repository.UserRepository;
+import hackhaton.codenrock.server.utils.ImageWorker;
 import lombok.RequiredArgsConstructor;
 import org.modelmapper.ModelMapper;
 import org.springframework.stereotype.Service;
@@ -29,6 +30,7 @@ public class TaskGroupServiceImpl implements TaskGroupService {
     @Override
     public List<TaskGroupDto> getTaskGroups(boolean isNecessary) {
         User user = userRepository.findAll().get(0);
+        ImageWorker imager = new ImageWorker();
         Set<Task> completedTasks = user.getCompletedTasks();
         return taskGroupRepository.findAll()
                 .stream()
@@ -36,6 +38,7 @@ public class TaskGroupServiceImpl implements TaskGroupService {
                 .map((x) -> {
                     TaskGroupDto dto = modelMapper.map(x, TaskGroupDto.class);
                     dto.setKnowledgeId(x.getKnowledgeBase().getId());
+                    dto.setImage(imager.getImageFromResource(x.getImage()));
                     return dto;
                 })
                 .peek((x) -> x.setActualCount(

@@ -15,4 +15,6 @@ public class Achievement {
     private String name;
     private String description;
     private Integer maxScore;
+
+    private String image;
 }

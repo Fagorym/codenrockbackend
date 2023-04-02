@@ -1,5 +1,5 @@
-insert into achievement(id, name, description, max_score)
-values (0, 'Новичок', 'Выполнить 1 задание', '1');
+insert into achievement(id, name, description, max_score, image)
+values (0, 'Новичок', 'Выполнить 1 задание', '1', '/beginner.png');
 
 insert into achievement(id, name, description, max_score)
 values (1, 'Бывалый', 'Выполнить 2 задания', '2');

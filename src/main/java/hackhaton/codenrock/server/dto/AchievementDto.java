@@ -9,4 +9,5 @@ public class AchievementDto {
     private String description;
     private Integer maxScore;
     private Integer userScore;
+    private String image;
 }
