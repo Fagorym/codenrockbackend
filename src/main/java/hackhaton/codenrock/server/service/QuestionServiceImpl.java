@@ -25,6 +25,8 @@ import java.util.Set;
 public class QuestionServiceImpl implements QuestionService {
     private final QuestionRepository questionRepository;
 
+    private final AchievementService achievementService;
+
     private final AnswerRepository answerRepository;
     private final ModelMapper modelMapper;
     private final UserRepository userRepository;
@@ -74,6 +76,7 @@ public class QuestionServiceImpl implements QuestionService {
             tasks.add(completed);
             user.setCompletedTasks(tasks);
             userRepository.save(user);
+            achievementService.checkNewAchievements(user);
             return true;
         } else {
             return false;

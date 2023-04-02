@@ -1,5 +1,6 @@
 package hackhaton.codenrock.server.service;
 
+import hackhaton.codenrock.server.dto.AchievementDto;
 import hackhaton.codenrock.server.dto.UserDto;
 import hackhaton.codenrock.server.exception.UserNotFoundException;
 import hackhaton.codenrock.server.model.User;
@@ -7,6 +8,9 @@ import hackhaton.codenrock.server.repository.UserRepository;
 import lombok.RequiredArgsConstructor;
 import org.modelmapper.ModelMapper;
 import org.springframework.stereotype.Service;
+
+import java.util.Set;
+import java.util.stream.Collectors;
 
 @Service
 @RequiredArgsConstructor
@@ -33,4 +37,37 @@ public class UserServiceImpl implements UserService {
             userRepository.save(user);
         }
     }
+
+    @Override
+    public Set<AchievementDto> getAchievementByUserId(Long userId) {
+        User user = userRepository.findById(userId)
+                .orElseThrow(() -> new UserNotFoundException(userId));
+        return user
+                .getAchievements()
+                .stream()
+                .map(achievement -> {
+                    AchievementDto dto = modelMapper.map(achievement, AchievementDto.class);
+                    dto.setUserScore(user.getCompletedTasks().size());
+                    return dto;
+                })
+                .collect(Collectors.toSet());
+    }
+
+    public Set<AchievementDto> getNewAchievements(Long userId) {
+        User user = userRepository.findById(userId)
+                .orElseThrow(() -> new UserNotFoundException(userId));
+        Set<AchievementDto> newAchievements = user
+                .getNewAchievements()
+                .stream()
+                .map(achievement -> {
+                    user.getAchievements().remove(achievement);
+                    AchievementDto dto = modelMapper.map(achievement, AchievementDto.class);
+                    dto.setUserScore(user.getCompletedTasks().size());
+                    return dto;
+                })
+                .collect(Collectors.toSet());
+        userRepository.save(user);
+        return newAchievements;
+    }
+
 }

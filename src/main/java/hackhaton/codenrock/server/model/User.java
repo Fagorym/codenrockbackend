@@ -32,5 +32,11 @@ public class User {
     )
     private Set<Achievement> achievements;
 
-
+    @ManyToMany
+    @JoinTable(
+            name = "new_achievements",
+            joinColumns = @JoinColumn(name = "user_id"),
+            inverseJoinColumns = @JoinColumn(name = "achievement_id")
+    )
+    private Set<Achievement> newAchievements;
 }
