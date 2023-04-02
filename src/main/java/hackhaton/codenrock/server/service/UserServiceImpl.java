@@ -22,4 +22,15 @@ public class UserServiceImpl implements UserService {
 
         return modelMapper.map(user, UserDto.class);
     }
+
+    @Override
+    public void changePlan(Long userId, int userPlan) {
+        User user = userRepository.findById(userId)
+                .orElseThrow(() -> new UserNotFoundException(userId));
+
+        if (userPlan > 0) {
+            user.setDailyScore(userPlan);
+            userRepository.save(user);
+        }
+    }
 }
