@@ -1,97 +1,35 @@
 insert into question(id, text, task_id)
-VALUES (0, 'Чего нельзя делать при работе с компьютером?', 1);
+VALUES (0, 'Что не предусматривают правила внутреннего трудового распорядка и график работы?', 2);
 insert into question(id, text, task_id)
-values (1, 'Как нельзя ставить ноги при работе с компьютером?', 1);
-
+values (1,
+        'В каких местах в офисе (или около него) можно курить сигареты (или использовать другие никотиносодержащие устройства)?',
+        2);
 insert into question(id, text, task_id)
-VALUES (2, 'Чего нужно опасаться при работе с компьютером?', 1);
-insert into question(id, text, task_id)
-values (3, 'Назовите основной принцип информационной безопасности', 1);
-
+VALUES (2, 'Что важно делать при использовании в работе горючих и легковоспламеняющихся веществ?', 2);
 
 insert into answer(text, question_id, is_right)
-VALUES ('Нельзя есть перед компьютером', 0, true);
+VALUES ('Звонки с работы по выходным', 0, true);
+insert into answer(text, question_id, is_right)
+VALUES ('Время начала и окончания работы', 0, false);
+insert into answer(text, question_id, is_right)
+VALUES ('Время для отдыха и питания', 0, false);
+insert into answer(text, question_id, is_right)
+VALUES ('Чередование смен', 0, false);
 
 insert into answer(text, question_id, is_right)
-VALUES ('Нельзя работать перед компьютером', 0, false);
+VALUES ('В специально отведённых местах', 1, true);
+insert into answer(text, question_id, is_right)
+VALUES ('В туалете', 1, false);
+insert into answer(text, question_id, is_right)
+VALUES ('На крыльце', 1, false);
+insert into answer(text, question_id, is_right)
+VALUES ('В кабинете, если разрешил босс', 1, false);
 
 insert into answer(text, question_id, is_right)
-VALUES ('Нельзя сидеть перед компьютером', 0, false);
-
-
+VALUES ('Не отрывать от них глаз', 2, false);
 insert into answer(text, question_id, is_right)
-VALUES ('Нельзя ставить ноги на стол', 1, true);
-
+VALUES ('Работать с ними только с коллегами', 2, false);
 insert into answer(text, question_id, is_right)
-VALUES ('Нельзя ставить ноги под стол', 1, false);
-
+VALUES ('Убирать их в безопасное место', 2, true);
 insert into answer(text, question_id, is_right)
-VALUES ('Нельзя ставить ногу на ногу', 1, false);
-
-insert into answer(text, question_id, is_right)
-VALUES ('Землятрясения', 2, true);
-
-insert into answer(text, question_id, is_right)
-VALUES ('Акул', 2, false);
-
-insert into answer(text, question_id, is_right)
-VALUES ('Компьютерных вирусов и мошенников', 2, true);
-
-insert into answer(text, question_id, is_right)
-VALUES ('Выживает сильнейший', 3, false);
-
-insert into answer(text, question_id, is_right)
-VALUES ('Не имей сто рублей, а имей сто друзей', 3, false);
-
-insert into answer(text, question_id, is_right)
-VALUES ('Если ты запустил чужой код на своем компьютере, то это уже не твой компьютер', 3, true);
-
-
-
-insert into question(id, text, task_id)
-VALUES (4, 'Чего нельзя делать при работе с компьютером?', 2);
-insert into question(id, text, task_id)
-values (5, 'Как нельзя ставить ноги при работе с компьютером?', 2);
-
-insert into question(id, text, task_id)
-VALUES (6, 'Чего нужно опасаться при работе с компьютером?', 2);
-insert into question(id, text, task_id)
-values (7, 'Назовите основной принцип информационной безопасности', 2);
-
-
-insert into answer(text, question_id, is_right)
-VALUES ('Нельзя есть перед компьютером', 4, true);
-
-insert into answer(text, question_id, is_right)
-VALUES ('Нельзя работать перед компьютером', 4, false);
-
-insert into answer(text, question_id, is_right)
-VALUES ('Нельзя сидеть перед компьютером', 4, false);
-
-
-insert into answer(text, question_id, is_right)
-VALUES ('Нельзя ставить ноги на стол', 5, true);
-
-insert into answer(text, question_id, is_right)
-VALUES ('Нельзя ставить ноги под стол', 5, false);
-
-insert into answer(text, question_id, is_right)
-VALUES ('Нельзя ставить ногу на ногу', 5, false);
-
-insert into answer(text, question_id, is_right)
-VALUES ('Землятрясения', 6, true);
-
-insert into answer(text, question_id, is_right)
-VALUES ('Акул', 6, false);
-
-insert into answer(text, question_id, is_right)
-VALUES ('Компьютерных вирусов и мошенников', 6, true);
-
-insert into answer(text, question_id, is_right)
-VALUES ('Выживает сильнейший', 7, false);
-
-insert into answer(text, question_id, is_right)
-VALUES ('Не имей сто рублей, а имей сто друзей', 7, false);
-
-insert into answer(text, question_id, is_right)
-VALUES ('Если ты запустил чужой код на своем компьютере, то это уже не твой компьютер', 7, true);
+VALUES ('Медленно их перемещать', 2, false);
