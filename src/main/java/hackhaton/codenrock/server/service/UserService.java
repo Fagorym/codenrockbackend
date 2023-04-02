@@ -11,4 +11,6 @@ public interface UserService {
     void changePlan(Long userId, int userPlan);
 
     Set<AchievementDto> getAchievementByUserId(Long userId);
+
+    Set<AchievementDto> getNewAchievements(Long userId);
 }

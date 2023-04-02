@@ -30,4 +30,9 @@ public class UserController {
     public Set<AchievementDto> getAchievements(@RequestParam Long userId) {
         return userService.getAchievementByUserId(userId);
     }
+
+    @GetMapping(value = "/achievements/new")
+    public Set<AchievementDto> getNewAchievements(@RequestParam Long userId) {
+        return userService.getNewAchievements(userId);
+    }
 }

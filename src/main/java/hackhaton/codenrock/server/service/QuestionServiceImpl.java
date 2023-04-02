@@ -58,11 +58,11 @@ public class QuestionServiceImpl implements QuestionService {
             }
         }
         if (rightCount == questionAnswers.getQuestionAnswersDtoList().size()) {
-            User user = userRepository.findById(1L).orElseThrow(
-                    () -> new UserNotFoundException(1L)
+            User user = userRepository.findById(0L).orElseThrow(
+                    () -> new UserNotFoundException(0L)
             );
             Task completed = tasksRepository.findById(questionAnswers.getTaskId())
-                    .orElseThrow(() -> new UserNotFoundException(1L));
+                    .orElseThrow(() -> new UserNotFoundException(0L));
             Integer newExperience = user.getExperience() + completed.getEarnedExperience();
             int level = user.getLevel();
             while (newExperience > user.getExperienceMax()) {

@@ -19,11 +19,13 @@ public class AchievementServiceImpl implements AchievementService {
     public void checkNewAchievements(User user) {
         List<Achievement> achievementSet = achievementRepository.findAll();
         for (Achievement achievement : achievementSet) {
-            if (user.getCompletedTasks().size() > achievement.getMaxScore()) {
+            if (user.getCompletedTasks().size() >= achievement.getMaxScore()) {
                 user.getNewAchievements().add(achievement);
             }
         }
         userRepository.save(user);
 
     }
+
+
 }
