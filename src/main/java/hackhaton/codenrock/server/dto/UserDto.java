@@ -7,6 +7,7 @@ import lombok.Data;
 public class UserDto {
     private String name;
     private Integer dailyScore;
+    private Integer daysInRow;
     private Integer currentScore;
     private Integer experience;
     private Integer experienceMax;
